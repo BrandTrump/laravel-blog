@@ -16,7 +16,7 @@
     <body>
 
         <article>
-            <h1><a href="/post">My First Post</a></h1>
+            <h1><a href="/posts/my-first-post">My First Post</a></h1>
 
             <p>
                 The MVC framework is an architectural pattern that separates an application into three main logical components Model, View, and controller.
@@ -26,7 +26,7 @@
         </article>
 
         <article>
-            <h1><a href="/post">My Second Post</a></h1>
+            <h1><a href="/posts/my-second-post">My Second Post</a></h1>
 
             <p>
                 SSH keys are an authentication method used to gain access to an encrypted connection between systems and then ultimately use that connection to manage the remote system.
@@ -35,7 +35,7 @@
         </article>
 
         <article>
-            <h1><a href="/post">My Third Post</a></h1>
+            <h1><a href="/posts/my-third-post">My Third Post</a></h1>
 
             <p>
                 Git is a software for tracking changes in any set of files, usually used for coordinating work among programmers collaboratively developing source code during software development.

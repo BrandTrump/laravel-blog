@@ -15,13 +15,8 @@
 
     <body>
 
-    <article>
-        <h1><a href="/post">My First Post</a></h1>
-
-            <p>
-                The MVC framework is an architectural pattern that separates an application into three main logical components Model, View, and controller.
-                This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
-            </p>
+        <article>
+            <?= $post; ?>
 
         </article>
 
