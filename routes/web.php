@@ -21,6 +21,8 @@ Route::get('posts/{post}', function ($slug) {
 
     $path = __DIR__ . "/../resources/posts/{$slug}.html";
 
+    //ddd($path);
+
     if (! file_exists($path)) {
         return redirect('/');
        // abort(404);
@@ -32,4 +34,4 @@ Route::get('posts/{post}', function ($slug) {
     return view('post', [
         'post' => $post
     ]);
-});
+})->where('post', '[A-z_\-]+');
