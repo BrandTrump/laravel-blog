@@ -11,6 +11,10 @@
                 <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
             </p>
 
+            {{--<p>
+                <a href="/comments/{{ $post->comment->id }}">{{ $post->comment->name }}</a>
+            </p>--}}
+
             <div>
                 {{ $post->excerpt }}
             </div>

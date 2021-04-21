@@ -2,6 +2,7 @@
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -37,3 +38,9 @@ Route::get('categories/{category:slug}',function (Category $category) {
             'posts' => $category->posts
         ]);
 });
+
+/*Route::get('comments/{comment:id}',function (Comment $comment) {
+    return view('post', [
+        'post' => $comment->post
+    ]);
+});*/
