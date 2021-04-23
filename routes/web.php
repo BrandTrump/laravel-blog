@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +40,5 @@ Route::get('categories/{category:slug}',function (Category $category) {
         ]);
 });
 
-/*Route::get('comments/{comment:id}',function (Comment $comment) {
-    return view('post', [
-        'post' => $comment->post
-    ]);
-});*/
+Route::post('comment', 'App\Http\Controllers\CommentController@store');
+

@@ -3,7 +3,7 @@
         <h1>{!! $post->title !!}</h1>
 
         <p>
-            <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+            By <a href="#">{{ $post->user->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
         </p>
 
        {{-- <p>
@@ -16,11 +16,10 @@
         </div>
 
         <div>
-            <ul>
                 @foreach($post->comment as $comment)
                     <li>
                         <strong>
-                            {{ $comment->created_at->diffForHumans() }}
+                            <a href="#">{{ $comment->user->name }}</a> Posted {{ $comment->created_at->diffForHumans() }}
                         </strong>
 
                     <hr>
@@ -29,7 +28,18 @@
                         {!! $comment->body !!}
                     </li>
                 @endforeach
-            </ul>
+
+        </div>
+            {{ Form::open(array('action' => 'App\Http\Controllers\CommentController@store' ,'method' => 'POST')) }}
+                <div>
+                    {{ Form::label('body', "Comment: ") }}
+                    {{ Form::textarea('body', '', ['class' => 'form-control']) }}
+
+                </div>
+                {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+            {{ Form::close() }}
+        <div>
+
         </div>
     </article>
 

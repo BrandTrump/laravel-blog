@@ -15,4 +15,10 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
+    public function user()
+    {
+        //hasOne, hasMany, belongsTo, belongsToMany
+        return $this->belongsTo(User::class);
+    }
+
 }
