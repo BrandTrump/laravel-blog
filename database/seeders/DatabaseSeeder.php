@@ -16,11 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Category::truncate();
+        /*Category::truncate();
         Post::truncate();
-        User::truncate();
+        User::truncate();*/
 
-        $user = User::factory()->create();
+        Post::factory(4)->create();
+
+        /*$user = User::factory()->create();
 
         $personal = Category::create([
            'name' => 'Personal',
@@ -53,6 +55,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'my-work-post',
             'excerpt' => '<p>Lorem ipsum dolar sit amet</p>',
             'body' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi viverra vehicula nisl eget blandit. Mauris hendrerit accumsan est.</p>'
-        ]);
+        ]);*/
     }
 }

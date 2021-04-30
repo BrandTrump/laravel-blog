@@ -26,7 +26,7 @@ class Comment extends Model
     public function getCommenterName()
     {
         // If user is logged in (user_id present), then return name of user from User model
-        if(Auth::user())
+        if($this->user_id)
         {
             return $this->belongsTo(User::class, 'user_id');
         }
