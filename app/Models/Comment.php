@@ -28,12 +28,15 @@ class Comment extends Model
         // If user is logged in (user_id present), then return name of user from User model
         if($this->user_id)
         {
-            return $this->belongsTo(User::class, 'user_id');
+            return $this->user->name;
+//            return $this->belongsTo(User::class, 'user_id');
         }
         else
         {
             // If user was not logged in, return the name of commenter from Comment model
-            return $this->belongsTo(Comment::class, 'id');
+//            return $this->belongsTo(Comment::class, 'id');
+
+            return $this->name;
         }
 
     }

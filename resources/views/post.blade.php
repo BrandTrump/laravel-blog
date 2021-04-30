@@ -22,7 +22,7 @@
             @foreach($post->comment as $comment)
                 <li>
                     <strong>
-                         <a href="#">{{ $comment->getCommenterName->name }}</a> Posted {{ $comment->created_at->diffForHumans() }}
+                         <a href="#">{{ $comment->getCommenterName() }}</a> Posted {{ $comment->created_at->diffForHumans() }}
                     </strong>
 
                     <hr>
