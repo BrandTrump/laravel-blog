@@ -23,10 +23,17 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function author()
+    {
+        //hasOne, hasMany, belongsTo, belongsToMany
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function user()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(User::class);
     }
+
 
 }

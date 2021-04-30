@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Comment;
@@ -22,7 +23,7 @@ use App\Http\Controllers;
 Route::get('/', function () {
 
     return view('posts', [
-        'posts' => Post::with('category')->get()
+        'posts' => Post::latest()->with('category', 'author')->get()
     ]);
 });
 
@@ -40,5 +41,15 @@ Route::get('categories/{category:slug}',function (Category $category) {
         ]);
 });
 
+Route::get('authors/{author}',function (User $author) {
+    return view('posts', [
+        'posts' => $author->posts
+    ]);
+});
+
 Route::post('comment', 'App\Http\Controllers\CommentController@store');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
