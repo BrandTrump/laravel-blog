@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use App\Http\Controllers;
+use App\Http\Controllers\PostsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ use App\Http\Controllers;
 Route::get('/', function () {
 
     return view('posts', [
-        'posts' => Post::latest()->with('category', 'author')->get()
+        'posts' => Post::latest()->with(['category', 'author'])->get()
     ]);
 });
 
@@ -41,7 +42,7 @@ Route::get('categories/{category:slug}',function (Category $category) {
         ]);
 });
 
-Route::get('authors/{author}',function (User $author) {
+Route::get('authors/{author:username}',function (User $author) {
     return view('posts', [
         'posts' => $author->posts
     ]);
@@ -53,3 +54,6 @@ Route::post('comment', 'App\Http\Controllers\CommentController@store');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/search/', 'App\Http\Controllers\PostsController@search')->name('search');
+

@@ -29,11 +29,18 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function user()
+    /*public function user()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(User::class);
+    }*/
+
+    public function hasComment($post_id)
+    {
+        //hasOne, hasMany, belongsTo, belongsToMany
+        return $this->comment()->where('post_id', $post_id)->count() > 0;
     }
+
 
 
 }
