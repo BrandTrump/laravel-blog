@@ -55,5 +55,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/search/', 'App\Http\Controllers\PostsController@search')->name('search');
+Route::get('/search/','App\Http\Controllers\PostsController@search')->name('search');
+
+
 

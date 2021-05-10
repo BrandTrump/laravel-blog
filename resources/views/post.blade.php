@@ -1,4 +1,5 @@
 <x-layout>
+
     <main class="container">
         <article class="blog-post">
             <h1 class="blog-post-title">{!! $post->title !!}</h1>
@@ -22,13 +23,20 @@
                     <h4 class="fst-italic">Comments</h4>
                 @endif
                 @foreach($post->comment as $comment)
-                    <div class="col-md-4">
+                    <div class="">
                         <div class="p-4 mb-3 bg-light rounded">
                             <ol class="list-unstyled">
                                 <li>
-                                    {!! $comment->body !!}
+                                    <div class="col-lg-4 mb-2">
+<!--                                        <svg class="bd-placeholder-img rounded-circle" width="50" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
+                                        <img src="https://i.pravatar.cc/55" width="55" height="55" class="mr-2 rounded-circle" alt="...">
+                                    </div>
 
-                                    <p class="blog-post-meta"><a href="#">{{ $comment->getCommenterName() }}</a> Posted {{ $comment->created_at->diffForHumans() }}</p>
+                                    <p class="blog-post-meta-comment"><a href="#">{{ $comment->getCommenterName() }}</a> Posted {{ $comment->created_at->diffForHumans() }}</p>
+
+                                    <div class="comment-body">
+                                        {!! $comment->body !!}
+                                    </div>
                                 </li>
                             </ol>
                         </div>
@@ -44,14 +52,14 @@
                 <h4 class="mb-3">Post Comment</h4>
                 <form class="needs-validation" novalidate>
                     <div class="row g-3">
-                        <div class="col-sm-6">
-                            <label for="firstname" class="form-label">First name</label>
-                            {{ Form::text('firstname', '', ['class' => 'form-control']) }}
+                        <div class="form-floating col-sm-6">
+                            {{ Form::text('firstname', '', ['class' => 'form-control', 'id' => 'firstname', 'placeholder'=>'First name']) }}
+                            <label for="firstname">First name</label>
                         </div>
 
-                        <div class="col-sm-6">
-                            <label for="lastname" class="form-label">Last name</label>
-                            {{ Form::text('lastname', '', ['class' => 'form-control']) }}
+                        <div class="form-floating col-sm-6">
+                            {{ Form::text('lastname', '', ['class' => 'form-control', 'id' => 'lastname', 'placeholder'=>'Last name']) }}
+                            <label for="lastname">Last name</label>
                         </div>
                     </div><br>
 
