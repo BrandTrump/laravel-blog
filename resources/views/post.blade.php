@@ -29,7 +29,7 @@
                                 <li>
                                     <div class="col-lg-4 mb-2">
 <!--                                        <svg class="bd-placeholder-img rounded-circle" width="50" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
-                                        <img src="https://i.pravatar.cc/55" width="55" height="55" class="mr-2 rounded-circle" alt="...">
+                                        <img src="/uploads/avatars/{{ $comment->getCommenterAvatar() }}" width="55" height="55" class="mr-2 rounded-circle" alt="...">
                                     </div>
 
                                     <p class="blog-post-meta-comment"><a href="#">{{ $comment->getCommenterName() }}</a> Posted {{ $comment->created_at->diffForHumans() }}</p>
@@ -70,6 +70,9 @@
                 </div><br>
 
                 {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+
+            @csrf
+
                 {{ Form::close() }}
 
             @else
@@ -83,7 +86,9 @@
                     </div><br>
 
                     {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-                {{ Form::close() }}
+            @csrf
+
+                    {{ Form::close() }}
             @endif
 
             <br>

@@ -91,7 +91,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                @forelse ($posts as $post)
+                @forelse ($posts->take(5) as $post)
                         <article class="blog-post">
                             <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
                                     {!! $post->title !!}
@@ -114,10 +114,11 @@
                             </li>
                             <li class="page-item active" aria-current="page">
                                 <a class="page-link" href="/">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="/two">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                                <a class="page-link" href="/two">Next</a>
                             </li>
                         </ul>
                     </nav>

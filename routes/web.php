@@ -28,6 +28,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/two', function () {
+
+    return view('postsTwo', [
+        'postsTwo' => Post::latest()->with(['category', 'author'])->get()
+    ]);
+});
+
+
 Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
 
     return view('post', [
@@ -50,6 +58,8 @@ Route::get('authors/{author:username}',function (User $author) {
 
 Route::post('comment', 'App\Http\Controllers\CommentController@store');
 
+Route::get('profile', 'App\Http\Controllers\UserController@profile')->name('profile');
+Route::post('profile', 'App\Http\Controllers\UserController@update_avatar');
 
 Auth::routes();
 

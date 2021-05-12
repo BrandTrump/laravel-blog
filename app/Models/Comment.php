@@ -41,6 +41,18 @@ class Comment extends Model
 
     }
 
+    public function getCommenterAvatar()
+    {
+        if($this->user_id)
+        {
+            return $this->user->avatar;
+        }
+        else
+        {
+            return '0cf0ca2ac23fbc36cf58434da4a47089.png';
+        }
+    }
+
     public function author()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
