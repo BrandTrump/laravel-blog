@@ -1,5 +1,6 @@
 <x-layout>
 
+
     <div class="container">
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
@@ -91,7 +92,7 @@
 
         <div class="row">
             <div class="col-md-8">
-                @forelse ($posts->take(5) as $post)
+                @forelse ($posts as $post)
                         <article class="blog-post">
                             <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
                                     {!! $post->title !!}
@@ -102,26 +103,13 @@
                                 {!! $post->excerpt !!}
                             </div>
 
-                        </article><!-- /.blog-post -->
+                        </article>
                     @empty
                     <h1 class="blog-post-title">No posts matching search result</h1><br>
                 @endforelse
 
-                    <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="/" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="/">1</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="/two">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="/two">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
+                {{ $posts->links() }}
+
             </div>
         </div>
 

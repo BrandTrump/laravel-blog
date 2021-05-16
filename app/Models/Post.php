@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Post extends Model
 {
@@ -40,7 +41,5 @@ class Post extends Model
         //hasOne, hasMany, belongsTo, belongsToMany
         return $this->comment()->where('post_id', $post_id)->count() > 0;
     }
-
-
 
 }

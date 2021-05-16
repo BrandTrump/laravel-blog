@@ -28,7 +28,6 @@
                             <ol class="list-unstyled">
                                 <li>
                                     <div class="col-lg-4 mb-2">
-<!--                                        <svg class="bd-placeholder-img rounded-circle" width="50" height="50" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>-->
                                         <img src="/uploads/avatars/{{ $comment->getCommenterAvatar() }}" width="55" height="55" class="mr-2 rounded-circle" alt="...">
                                     </div>
 
@@ -98,7 +97,7 @@
         <br>
 
         <nav class="blog-pagination" aria-label="Pagination">
-            <a class="btn btn-outline-primary" href="/">Go Back</a>
+            <a class="btn btn-outline-primary" href="#" onclick="history.back()">Go Back</a>
         </nav>
     </main>
 

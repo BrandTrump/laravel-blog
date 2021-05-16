@@ -89,7 +89,7 @@
         </div>
 
         <nav class="blog-pagination" aria-label="Pagination">
-            <a class="btn btn-outline-primary" href="/">Go Back</a>
+            <a class="btn btn-outline-primary" href="#" onclick="history.back()">Go Back</a>
         </nav>
 
     </main>

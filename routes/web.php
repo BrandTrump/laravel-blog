@@ -21,19 +21,14 @@ use App\Http\Controllers\PostsController;
 |
 */
 
-Route::get('/', function () {
+
+Route::get('/','App\Http\Controllers\PostsController@index');
+/*Route::get('/', function () {
 
     return view('posts', [
         'posts' => Post::latest()->with(['category', 'author'])->get()
     ]);
-});
-
-Route::get('/two', function () {
-
-    return view('postsTwo', [
-        'postsTwo' => Post::latest()->with(['category', 'author'])->get()
-    ]);
-});
+});*/
 
 
 Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
@@ -45,13 +40,13 @@ Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $
 });
 
 Route::get('categories/{category:slug}',function (Category $category) {
-    return view('posts', [
+    return view('posts-meta', [
             'posts' => $category->posts
         ]);
 });
 
 Route::get('authors/{author:username}',function (User $author) {
-    return view('posts', [
+    return view('posts-meta', [
         'posts' => $author->posts
     ]);
 });
