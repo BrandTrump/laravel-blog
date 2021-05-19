@@ -23,6 +23,13 @@ use App\Http\Controllers\PostsController;
 
 
 Route::get('/','App\Http\Controllers\PostsController@index');
+Route::post('/submit', 'App\Http\Controllers\PostsController@submit');
+
+Route::get('/create', function () {
+   return view('post-creation');
+});
+
+/*Route::resource('post', 'App\Http\Controllers\PostsController');*/
 /*Route::get('/', function () {
 
     return view('posts', [
@@ -39,17 +46,9 @@ Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $
 
 });
 
-Route::get('categories/{category:slug}',function (Category $category) {
-    return view('posts-meta', [
-            'posts' => $category->posts
-        ]);
-});
+Route::get('categories/{category:slug}','App\Http\Controllers\PostsController@index');
 
-Route::get('authors/{author:username}',function (User $author) {
-    return view('posts-meta', [
-        'posts' => $author->posts
-    ]);
-});
+Route::get('authors/{author:username}','App\Http\Controllers\PostsController@index');
 
 Route::post('comment', 'App\Http\Controllers\CommentController@store');
 

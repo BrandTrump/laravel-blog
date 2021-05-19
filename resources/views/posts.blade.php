@@ -5,7 +5,9 @@
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
-<!--                    <a class="link-secondary" href="#">Subscribe</a>-->
+                    @if(\Illuminate\Support\Facades\Auth::user())
+                        <a class="link-secondary" href="/create">Create Post</a>
+                    @endif
                 </div>
                 <div class="col-4 text-center">
                     <a class="blog-header-logo text-dark" href="/">My Bolg</a>
@@ -36,7 +38,6 @@
 
     <main class="container">
 
-
         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
 
             <div class="carousel-inner">
@@ -44,8 +45,8 @@
                     <img class="d-block w-100 h-100" src="https://cdn.pixabay.com/index/2021/04/30/09-58-39-26_1440x480.jpg" alt="First slide">
                     <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
+                            <h1>Create a Post.</h1>
+                            <p>Sign up to create a post of your own.</p>
                             <p><a class="btn btn-lg btn-primary" href="/home">Sign up today</a></p>
                         </div>
                     </div>
@@ -148,6 +149,8 @@
                     </ol>
                 </div>-->
 <!--            </div>-->
+
+
 
     </main><!-- /.container -->
 
