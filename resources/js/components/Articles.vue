@@ -15,6 +15,16 @@
             </div>
           </div><br>
 
+          <div class="mb-3">
+            <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+            <span>Selected: {{ selected }}</span>
+          </div>
+
           <textarea class="form-control" name="body" id="body" rows="7" v-model="fields.body" placeholder="Content"></textarea>
           <div v-if="errors && errors.body" class="text-danger">{{ errors.body[0] }}</div><br>
 
@@ -36,6 +46,7 @@ export default {
       errors: {},
       success: false,
       loaded: true,
+      selected: '',
     }
   },
   methods: {

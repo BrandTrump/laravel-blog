@@ -4979,13 +4979,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       fields: {},
       errors: {},
       success: false,
-      loaded: true
+      loaded: true,
+      selected: ''
     };
   },
   methods: {
@@ -41187,6 +41198,50 @@ var render = function() {
             ])
           ]),
           _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.selected,
+                    expression: "selected"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.selected = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm._v("Please select one")
+                ]),
+                _vm._v(" "),
+                _c("option", [_vm._v("A")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("B")]),
+                _vm._v(" "),
+                _c("option", [_vm._v("C")])
+              ]
+            ),
+            _vm._v(" "),
+            _c("span", [_vm._v("Selected: " + _vm._s(_vm.selected))])
+          ]),
           _vm._v(" "),
           _c("textarea", {
             directives: [

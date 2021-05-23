@@ -19,7 +19,7 @@ class Comment extends Model
     public function user()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // Figure out how to get commenter name
