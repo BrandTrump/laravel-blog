@@ -4,11 +4,37 @@
     <div class="container">
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    @if(\Illuminate\Support\Facades\Auth::user())
+
+                @if(\Illuminate\Support\Facades\Auth::user())
+                    <div class="col-4 pt-1">
                         <a class="link-secondary" href="/create">Create Post</a>
-                    @endif
-                </div>
+                    </div>
+                @endif
+
+                @if(! \Illuminate\Support\Facades\Auth::user())
+                    <div class="col-4 pt-1">
+                        <a class="link-secondary"  data-bs-toggle="modal" data-bs-target="#exampleModal" href="/create">Create Post</a>
+                    </div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Create a post</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Sign up to publish your own post.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <a type="button" class="btn btn-primary" href="/home">Sign up</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="col-4 text-center">
                     <a class="blog-header-logo text-dark" href="/">My Bolg</a>
                 </div>
@@ -91,7 +117,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row g-5">
             <div class="col-md-8">
                 @forelse ($posts as $post)
                         <article class="blog-post">
@@ -103,54 +129,51 @@
                             <div>
                                 {!! $post->excerpt !!}
                             </div>
-
                         </article>
-                    @empty
+                @empty
                     <h1 class="blog-post-title">No posts matching search result</h1><br>
                 @endforelse
 
-                {{ $posts->links() }}
+               {{ $posts->links() }}
 
             </div>
-        </div>
 
-<!--          <div class="col-md-4">
-                <div class="p-4 mb-3 bg-light rounded">
-                    <h4 class="fst-italic">About</h4>
-                    <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by? Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.</p>
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4 mb-3 bg-light rounded">
+                        <h4 class="fst-italic">About</h4>
+                        <p class="mb-0">This is a blog page for learning all new things. You can create a post by signing up to the blog. Corporis reprehenderit optio dolor maiores voluptas velit.</p>
+                    </div>
+
+                    <div class="p-4">
+                        <h4 class="fst-italic">Archives</h4>
+                        <ol class="list-unstyled mb-0">
+                            <li><a href="#">March 2021</a></li>
+                            <li><a href="#">February 2021</a></li>
+                            <li><a href="#">January 2021</a></li>
+                            <li><a href="#">December 2020</a></li>
+                            <li><a href="#">November 2020</a></li>
+                            <li><a href="#">October 2020</a></li>
+                            <li><a href="#">September 2020</a></li>
+                            <li><a href="#">August 2020</a></li>
+                            <li><a href="#">July 2020</a></li>
+                            <li><a href="#">June 2020</a></li>
+                            <li><a href="#">May 2020</a></li>
+                            <li><a href="#">April 2020</a></li>
+                        </ol>
+                    </div>
+
+                    <div class="p-4">
+                        <h4 class="fst-italic">Elsewhere</h4>
+                        <ol class="list-unstyled">
+                            <li><a href="https://github.com/BrandTrump">GitHub</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                        </ol>
+                    </div>
                 </div>
-            </div>-->
-
-
-<!--               <div class="p-4 text-lg-end">
-                    <h4 class="fst-italic">Archives</h4>
-                    <ol class="list-unstyled mb-0">
-                        <li><a href="#">March 2014</a></li>
-                        <li><a href="#">February 2014</a></li>
-                        <li><a href="#">January 2014</a></li>
-                        <li><a href="#">December 2013</a></li>
-                        <li><a href="#">November 2013</a></li>
-                        <li><a href="#">October 2013</a></li>
-                        <li><a href="#">September 2013</a></li>
-                        <li><a href="#">August 2013</a></li>
-                        <li><a href="#">July 2013</a></li>
-                        <li><a href="#">June 2013</a></li>
-                        <li><a href="#">May 2013</a></li>
-                        <li><a href="#">April 2013</a></li>
-                    </ol>
-                </div>-->
-
-<!--                <div class="p-4">
-                    <h4 class="fst-italic">Elsewhere</h4>
-                    <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                    </ol>
-                </div>-->
-<!--            </div>-->
-
-
+            </div>
+        </div>
 
     </main><!-- /.container -->
 

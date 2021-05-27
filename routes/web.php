@@ -25,9 +25,7 @@ use App\Http\Controllers\PostsController;
 Route::get('/','App\Http\Controllers\PostsController@index');
 Route::post('/submit', 'App\Http\Controllers\PostsController@submit');
 
-Route::get('/create', function () {
-   return view('post-creation');
-});
+Route::get('/create', 'App\Http\Controllers\PostsController@showCreate');
 
 /*Route::resource('post', 'App\Http\Controllers\PostsController');*/
 /*Route::get('/', function () {
@@ -40,15 +38,26 @@ Route::get('/create', function () {
 
 Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $post)->firstOrFail()
 
+
+    $comments = Comment::forPost($post)->get()->threaded();
+
+
+    /*$comments = $post->comment->groupBy('parent_id'); // null
+
+    $comments['root'] = $comments[''];
+
+    unset($comments['']);*/
+
     return view('post', [
         'post' => $post
-    ]);
+
+    ], compact('comments'));
 
 });
 
-Route::get('categories/{category:slug}','App\Http\Controllers\PostsController@index');
+Route::get('categories/{category:slug}','App\Http\Controllers\PostsController@showCategories');
 
-Route::get('authors/{author:username}','App\Http\Controllers\PostsController@index');
+Route::get('authors/{author:username}','App\Http\Controllers\PostsController@showAuthor');
 
 Route::post('comment', 'App\Http\Controllers\CommentController@store');
 

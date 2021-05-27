@@ -11,10 +11,12 @@
 
         <div id="app">
                 <div class="mt-3">
-                    <articles></articles>
+<!--                    <articles></articles>-->
+
+                    @include('post-creation.form')
 
                     <nav class="blog-pagination" aria-label="Pagination">
-                        <br><a class="btn btn-outline-primary" href="#" onclick="history.back()">Go Back</a>
+                        <br><a class="btn btn-outline-primary" href="/">Go Back</a>
                     </nav>
                 </div>
         </div>

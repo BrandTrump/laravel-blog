@@ -17,9 +17,30 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->paginate(7);
 
         return view('posts', compact('posts'));
+    }
+
+    public function showCategories(Category $category)
+    {
+        return view('posts', [
+            'posts' => $category->post()->paginate(7),
+        ]);
+    }
+
+    public function showAuthor(User $author)
+    {
+        return view('posts', [
+            'posts' => $author->post()->paginate(7),
+        ]);
+    }
+
+    public function showCreate()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->paginate(5);
+
+        return view('post-creation', compact('posts'));
     }
 
     public function checkExist()
@@ -48,30 +69,51 @@ class PostsController extends Controller
     public function submit(Request $request)
     {
         $this->validate($request, array(
-            'title' => 'required',
-            'name' => 'required',
+            'title' => 'required|unique:posts,title',
+            'name' => 'required_without:category_id|unique:categories,name',
             'body' => 'required|min:5|max:5000',
         ));
 
-        $category = new Category();
+        if (isset($request->name))
+        {
+            $category = new Category();
 
-        $category->name = $request->name;
-        $category->slug = Str::slug($request->name, '-');
-        $category->created_at = Carbon::now()->format('Y-m-d H:i:s');
-        $category->save();
+            $category->name = $request->name;
+            $category->slug = Str::slug($request->name, '-');
+            $category->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $category->save();
+        }
 
-        $post = new Post();
+        if($request->category_id == null)
+        {
+            $post = new Post();
 
-        $post->user_id = Auth::user()->id;
-        $post->category_id = $category->id;
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->slug = Str::slug($request->title, '-');
-        $post->excerpt = Str::words($post->body, 10);
-        $post->created_at = Carbon::now()->format('Y-m-d H:i:s');
-        $post->save();
+            $post->user_id = Auth::user()->id;
+            $post->category_id = $category->id;
+            $post->title = $request->title;
+            $post->body = $request->body;
+            $post->slug = Str::slug($request->title, '-');
+            $post->excerpt = Str::words($post->body, 10);
+            $post->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $post->save();
+        }
+        else
+        {
+            $post = new Post();
 
-        return response()->json(null, 200);
+            $post->user_id = Auth::user()->id;
+            $post->category_id = $request->category_id;
+            $post->title = $request->title;
+            $post->body = $request->body;
+            $post->slug = Str::slug($request->title, '-');
+            $post->excerpt = Str::words($post->body, 10);
+            $post->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $post->save();
+        }
+
+        /*return response()->json(null, 200);*/
+
+        return redirect('/')->with('success', 'Comment Added');
 
     }
 }
