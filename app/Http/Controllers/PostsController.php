@@ -38,7 +38,7 @@ class PostsController extends Controller
 
     public function showCreate()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->get();
 
         return view('post-creation', compact('posts'));
     }

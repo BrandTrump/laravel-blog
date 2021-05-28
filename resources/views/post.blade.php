@@ -66,10 +66,11 @@
 
                     </div><br>
 
-                    {{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
+                    {{ Form::submit('Comment', ['class' => 'btn btn-primary']) }}
             @csrf
 
                     {{ Form::close() }}
+
             @endif
 
             <br>

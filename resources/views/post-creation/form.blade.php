@@ -1,38 +1,43 @@
 {{ Form::open(array('action' => 'App\Http\Controllers\PostsController@submit' ,'method' => 'POST')) }}
-<div class="col-md-7 col-lg-8">
-    <h4 class="mb-3">Create Blog Post</h4>
-    <form class="needs-validation" novalidate>
-        <div class="row g-3">
-            <div class="form-floating col-sm-6">
-                {{ Form::text('title', '', ['class' => 'form-control', 'id' => 'title', 'placeholder'=>'Title']) }}
-                <label for="title">Title</label>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Title</label>
+                <div class="input-group mb-4">
+                    <input class="form-control" placeholder="" id="title"  name="title" aria-label="title" type="text" >
+                </div>
             </div>
-
-            <div class="form-floating col-sm-6">
-                {{ Form::text('name', '', ['class' => 'form-control', 'id' => 'name', 'placeholder'=>'Category']) }}
-                <label for="name">Create new category</label>
+            <div class="col-md-6 ps-2">
+                <label>Create New Category</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="" aria-label="name" >
+                </div>
             </div>
-        </div><br>
+        </div>
+        <div class="mb-4">
+            <label>Add to existing category</label>
+            <div class="input-group">
+                <select class="form-select form-select-sm mt-3" name="category_id">
 
-        <div>
-            <label for ="category_id">Create post in category:</label>
-            <select class="form-select form-select-sm mt-3" name="category_id">
+                    <option value="" selected>Open this select menu</option>
 
-                <option value="" selected>Open this select menu</option>
+                    @foreach ($posts as $post)
+                        <option value='{{ $post->category->id }}'>{{ $post->category->name }}</option>
+                    @endforeach
 
-                @foreach ($posts as $post)
-                    <option value='{{ $post->category->id }}'>{{ $post->category->name }}</option>
-                @endforeach
-
-            </select>
-        </div><br>
-
-    {{ Form::textarea('body', '', ['class' => 'form-control', 'placeholder'=>'Content']) }}
-
-</div><br>
-
-{{ Form::submit('Submit', ['class' => 'btn btn-primary']) }}
-
+                </select>
+            </div>
+        </div>
+        <div class="form-group mb-4">
+            <label>Content</label>
+            <textarea name="body" class="form-control" id="body" rows="4"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn bg-gradient-dark w-100">Create Post</button>
+            </div>
+        </div>
+    </div>
 @csrf
 
 {{ Form::close() }}

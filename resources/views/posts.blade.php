@@ -1,6 +1,5 @@
 <x-layout>
 
-
     <div class="container">
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
@@ -42,9 +41,6 @@
                         <form action="{{route('search')}}/" class="search-form" method="GET">
                             <div class="input-group search-group">
                                 <input type="text" class="form-control search-control m-1" name="search" placeholder="Search" required/>
-<!--                                <button class="searchButton" type ="submit" aria-label="Search">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="material-icons" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
-                                </button>-->
                             </div>
                         </form>
 
@@ -183,7 +179,6 @@
             <a href="#">Back to top</a>
         </p>
     </footer>
-
 
 </x-layout>
 
