@@ -1,6 +1,14 @@
 <x-layout>
 
     <main class="container">
+        <header class="blog-header py-3 mb-4">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="text-center">
+                    <a class="blog-header-logo text-dark" href="/">My Bolg</a>
+                </div>
+            </div>
+        </header>
+
         <article class="blog-post">
             <h1 class="blog-post-title">{!! $post->title !!}</h1>
 
@@ -83,5 +91,12 @@
             <a class="btn btn-outline-primary" href="/">Go Back</a>
         </nav>
     </main>
+
+    <footer class="blog-footer">
+        <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        <p>
+            <a href="#">Back to top</a>
+        </p>
+    </footer>
 
 </x-layout>

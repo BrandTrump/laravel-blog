@@ -32,9 +32,9 @@
             <label>Content</label>
             <textarea name="body" class="form-control" id="body" rows="4"></textarea>
         </div>
-        <div class="row">
+        <div class="bg">
             <div class="col-md-12">
-                <button type="submit" class="btn bg-gradient-dark w-100">Create Post</button>
+                <button type="submit" class="btn text-white w-100">Create Post</button>
             </div>
         </div>
     </div>

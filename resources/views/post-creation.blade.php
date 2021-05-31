@@ -11,7 +11,7 @@
 
         <div id="app">
                 <div class="mt-3">
-<!--                    <articles></articles>-->
+<!--                   <articles></articles>-->
 
                     @include('post-creation.form')
 
