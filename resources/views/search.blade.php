@@ -27,7 +27,9 @@
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
                 @foreach ($posts as $post)
-                    <a class="p-2 link-secondary" href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
+                    @foreach($post->category as $category)
+                        <a class="p-2 link-secondary" href="/categories/{{ $category->slug }}">{{ $category->category_name }}</a>
+                    @endforeach
                 @endforeach
             </nav>
         </div>
@@ -37,17 +39,19 @@
         <div class="row">
             <div class="col-md-8">
                 @forelse ($posts as $post)
-                    <article class="blog-post">
-                        <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
-                                {!! $post->title !!}
-                            </a></h1>
-                        <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}" class="link-dark">{{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="link-dark">{{ $post->category->name }}</a></p>
+                    @foreach($post->category as $category)
+                        <article class="blog-post">
+                            <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
+                                    {!! $post->title !!}
+                                </a></h1>
+                            <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}" class="link-dark">{{ $post->author->name }}</a> in <a href="/categories/{{ $category->slug }}" class="link-dark">{{ $category->category_name }}</a></p>
 
-                        <div>
-                            {!! $post->excerpt !!}
-                        </div>
+                            <div>
+                                {!! $post->excerpt !!}
+                            </div>
 
-                    </article><!-- /.blog-post -->
+                        </article><!-- /.blog-post -->
+                    @endforeach
                 @empty
                     <h1 class="blog-post-title">No posts matching search result</h1><br>
                 @endforelse

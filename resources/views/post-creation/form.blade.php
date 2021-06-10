@@ -17,13 +17,17 @@
         <div class="mb-4">
             <label>Add to existing category</label>
             <div class="input-group">
-                <select class="form-select form-select-sm mt-3" name="category_id">
+                <select class="form-select form-select-sm mt-3" multiple name="category_id[]">
 
                     <option value="" selected>Open this select menu</option>
 
-                    @foreach ($posts as $post)
-                        <option value='{{ $post->category->id }}'>{{ $post->category->name }}</option>
-                    @endforeach
+                    @if( ! $posts == null)
+                        @foreach($posts as $post)
+                            @foreach ($post->category as $category)
+                                <option value='{{ $category->id }}'>{{ $category->category_name }}</option>
+                            @endforeach
+                        @endforeach
+                    @endif
 
                 </select>
             </div>
@@ -34,7 +38,7 @@
         </div>
         <div class="bg">
             <div class="col-md-12">
-                <button type="submit" class="btn text-white w-100">Create Post</button>
+                <button type="submit" class="btn text-white w-100" name="save">Save as Draft</button>
             </div>
         </div>
     </div>

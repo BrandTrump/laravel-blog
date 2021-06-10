@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,15 +22,30 @@ class DatabaseSeeder extends Seeder
         Post::truncate();
         User::truncate();*/
 
-        Post::factory(18)->create();
+        Status::factory()->create(['name' => 'Draft']);
+        Status::factory()->create(['name' => 'Published']);
 
-        $user = User::factory()->create([
+        $post = Post::factory(7)->create();
+        $category = Category::factory(7)->create();
+
+        /*foreach ($category as $category_individual)
+        {
+            $category_individual->post()->sync($category);
+        }*/
+
+        $category->first()->post()->sync($post);
+
+        /*$category->first()->post()->sync($post);*/
+
+       /* $category->post()->sync($post->id);*/
+
+        /* $user = User::factory()->create([
            'name' => 'Jimmy Broadbent'
         ]);
 
         Post::factory(2)->create([
-            'user_id' => $user->id
-        ]);
+            'user_id' => $user->id,
+        ]);*/
 
         /*$user = User::factory()->create();
 

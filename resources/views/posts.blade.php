@@ -51,9 +51,13 @@
 
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between">
-                @foreach ($posts as $post)
-                    <a class="p-2 link-secondary" href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
-                @endforeach
+                @if( ! $posts == null)
+                    @foreach ($posts as $post)
+                        @foreach($post->category as $category)
+                            <a class="p-2 link-secondary" href="/categories/{{ $category->slug }}">{{ $category->category_name }}</a>
+                        @endforeach
+                    @endforeach
+                @endif
             </nav>
         </div>
     </div>
@@ -106,29 +110,40 @@
 
         <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
-                <h1 class="display-4 fst-italic">{!! \App\Models\Post::latest()->first()->title !!}</h1>
-                <p class="lead my-3">{!! \App\Models\Post::latest()->first()->excerpt !!}</p>
-                <p class="lead mb-0"><a href="/posts/{{ \App\Models\Post::latest()->first()->slug }}" class="text-white fw-bold">Continue reading...</a></p>
+                @if( ! $posts == null)
+                    <h1 class="display-4 fst-italic">{!! \App\Models\Post::latest()->first()->title !!}</h1>
+                    <p class="lead my-3">{!! \App\Models\Post::latest()->first()->excerpt !!}</p>
+                    <p class="lead mb-0"><a href="/posts/{{ \App\Models\Post::latest()->first()->slug }}" class="text-white fw-bold">Continue reading...</a></p>
+                @endif
             </div>
         </div>
 
 
         <div class="row g-5">
             <div class="col-md-8">
-                @forelse ($posts as $post)
-                        <article class="blog-post">
-                            <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
-                                    {!! $post->title !!}
-                                </a></h1>
-                            <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}" class="link-dark">{{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}" class="link-dark">{{ $post->category->name }}</a></p>
+                @if( ! $posts == null)
+                    @forelse ($posts as $post)
+                            <article class="blog-post">
+                                <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
+                                        {!! $post->title !!}
+                                    </a></h1>
 
-                            <div>
-                                {!! $post->excerpt !!}
-                            </div>
-                        </article>
-                @empty
-                    <h1 class="blog-post-title">No posts matching search result</h1><br>
-                @endforelse
+                                <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}" class="link-dark">{{ $post->author->name }}</a> in
+
+                                        @foreach($post->category as $category)
+                                            <a href="/categories/{{ $category->slug }}" class="link-dark">{{ $category->category_name }}</a></p>
+                                        @endforeach
+
+                                <p class="{{ $post->getStatusClasses() }}">{{ $post->status->name }}</p>
+
+                                <div>
+                                    {!! $post->excerpt !!}
+                                </div>
+                            </article>
+                    @empty
+                        <h1 class="blog-post-title">No posts matching search result</h1><br>
+                    @endforelse
+                @endif
 
                {{ $posts->links() }}
 

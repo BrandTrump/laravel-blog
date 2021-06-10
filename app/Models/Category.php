@@ -9,9 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function post()
         {
             //hasOne, hasMany, belongsTo, belongsToMany
-            return $this->hasMany(Post::class);
+            return $this->belongsToMany(Post::class)->withPivot('post_id');
         }
 }

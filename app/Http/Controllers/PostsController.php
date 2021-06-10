@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->paginate(7);
+        $posts = Post::with('category')->orderBy('created_at', 'desc')->paginate(7);
 
         return view('posts', compact('posts'));
     }
@@ -25,30 +26,22 @@ class PostsController extends Controller
     public function showCategories(Category $category)
     {
         return view('posts', [
-            'posts' => $category->post()->paginate(7),
+            'posts' => $category->post()->orderBy('created_at', 'desc')->paginate(7),
         ]);
     }
 
     public function showAuthor(User $author)
     {
         return view('posts', [
-            'posts' => $author->post()->paginate(7),
+            'posts' => $author->post()->orderBy('created_at', 'desc')->paginate(7),
         ]);
     }
 
     public function showCreate()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['category', 'author'])->get()->unique('category_id');
+        $posts = Post::with('category')->orderBy('created_at', 'desc')->get();
 
         return view('post-creation', compact('posts'));
-    }
-
-    public function checkExist()
-    {
-        $name = request()->get('name');
-        $category = new Category();
-        $where = ['id' => $name];
-        return $category->where($where)->get()->count() > 0;
     }
 
     public function search(Request $request)
@@ -70,7 +63,7 @@ class PostsController extends Controller
     {
         $this->validate($request, array(
             'title' => 'required|unique:posts,title',
-            'name' => 'required_without:category_id|unique:categories,name',
+            'category_name' => 'required_without:category_id|unique:categories,category_name',
             'body' => 'required|min:5|max:5000',
         ));
 
@@ -78,38 +71,42 @@ class PostsController extends Controller
         {
             $category = new Category();
 
-            $category->name = $request->name;
+            $category->category_name = $request->name;
             $category->slug = Str::slug($request->name, '-');
             $category->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $category->save();
         }
 
-        if($request->category_id == null)
+        if (!isset($request->name))
         {
             $post = new Post();
 
             $post->user_id = Auth::user()->id;
-            $post->category_id = $category->id;
             $post->title = $request->title;
             $post->body = $request->body;
             $post->slug = Str::slug($request->title, '-');
             $post->excerpt = Str::words($post->body, 10);
             $post->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $post->save();
+
+            $post->category()->sync($request->category_id);
         }
         else
         {
             $post = new Post();
 
             $post->user_id = Auth::user()->id;
-            $post->category_id = $request->category_id;
             $post->title = $request->title;
             $post->body = $request->body;
             $post->slug = Str::slug($request->title, '-');
             $post->excerpt = Str::words($post->body, 10);
             $post->created_at = Carbon::now()->format('Y-m-d H:i:s');
             $post->save();
+
+            $post->category()->sync($category , $request->category_id);
         }
+
+
 
         /*return response()->json(null, 200);*/
 

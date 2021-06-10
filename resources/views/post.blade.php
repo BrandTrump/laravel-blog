@@ -10,13 +10,18 @@
         </header>
 
         <article class="blog-post">
-            <h1 class="blog-post-title">{!! $post->title !!}</h1>
+                    <h1 class="blog-post-title">{!! $post->title !!}</h1>
 
-            <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a></p>
+                    <p class="blog-post-meta">By <a href="/authors/{{ $post->author->username }}">{{ $post->author->name }}</a> in
 
-            <div>
-                {!! $post->body !!}
-            </div>
+                        @foreach($post->category as $category)
+                            <a href="/categories/{{ $category->slug }}">{{ $category->category_name }}</a></p>
+                        @endforeach
+
+                    <div>
+                        {!! $post->body !!}
+                    </div>
+
         </article>
 
             @if(\Illuminate\Support\Facades\Auth::user())

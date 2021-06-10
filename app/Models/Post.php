@@ -15,7 +15,7 @@ class Post extends Model
     public function category()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class)->withPivot('category_id');
     }
 
     public function comment()
@@ -30,6 +30,7 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+
     public function user()
     {
         //hasOne, hasMany, belongsTo, belongsToMany
@@ -40,6 +41,23 @@ class Post extends Model
     {
         //hasOne, hasMany, belongsTo, belongsToMany
         return $this->comment()->where('post_id', $post_id)->count() > 0;
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function getStatusClasses()
+    {
+        if($this->status->name == 'Draft')
+        {
+            return 'btn btn-lg btn-primary';
+        }
+        else
+        {
+            return 'btn btn-lg btn-success';
+        }
     }
 
 }

@@ -49,9 +49,11 @@ Route::get('posts/{post:slug}', function (Post $post) { // Post::where('slug', $
     unset($comments['']);*/
 
     return view('post', [
-        'post' => $post
 
-    ], compact('comments'));
+        $post = Post::with('category')->find($post->id)
+
+
+    ], compact('comments', 'post'));
 
 });
 
