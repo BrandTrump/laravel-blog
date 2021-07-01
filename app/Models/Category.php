@@ -14,6 +14,6 @@ class Category extends Model
     public function post()
         {
             //hasOne, hasMany, belongsTo, belongsToMany
-            return $this->belongsToMany(Post::class)->withPivot('post_id');
+            return $this->belongsToMany(Post::class)->withPivot('post_id', 'category_id');
         }
 }

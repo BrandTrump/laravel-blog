@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5f2600bf4b3ac0f57c31dc08852a879648c7e8b5',
+    'reference' => 'ed3e911be872ed9906079684d6fa1cc442983e68',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -19,6 +19,15 @@
       array (
       ),
       'reference' => '9cb795bf30988e8c96dd3c40623c48a877bc6714',
+    ),
+    'bacon/bacon-qr-code' => 
+    array (
+      'pretty_version' => '2.0.3',
+      'version' => '2.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '3e9d791b67d0a2912922b7b7c7312f4b37af41e4',
     ),
     'brick/math' => 
     array (
@@ -35,6 +44,15 @@
       array (
         0 => '*',
       ),
+    ),
+    'dasprid/enum' => 
+    array (
+      'pretty_version' => '1.0.3',
+      'version' => '1.0.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '5abf82f213618696dda8e3bf6f64dd042d8542b2',
     ),
     'davedevelopment/hamcrest-php' => 
     array (
@@ -438,6 +456,15 @@
         0 => '*',
       ),
     ),
+    'laravel/fortify' => 
+    array (
+      'pretty_version' => 'v1.7.13',
+      'version' => '1.7.13.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1753d05c80f930cc2715051858900965b49f32d9',
+    ),
     'laravel/framework' => 
     array (
       'pretty_version' => 'v8.36.2',
@@ -454,7 +481,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5f2600bf4b3ac0f57c31dc08852a879648c7e8b5',
+      'reference' => 'ed3e911be872ed9906079684d6fa1cc442983e68',
     ),
     'laravel/sail' => 
     array (
@@ -638,6 +665,15 @@
       ),
       'reference' => '06e2ebd25f2869e54a306dda991f7db58066f7f6',
     ),
+    'paragonie/constant_time_encoding' => 
+    array (
+      'pretty_version' => 'v2.4.0',
+      'version' => '2.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c',
+    ),
     'phar-io/manifest' => 
     array (
       'pretty_version' => '2.0.1',
@@ -763,6 +799,15 @@
       array (
       ),
       'reference' => 'c73c6737305e779771147af66c96ca6a7ed8a741',
+    ),
+    'pragmarx/google2fa' => 
+    array (
+      'pretty_version' => '8.0.0',
+      'version' => '8.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '26c4c5cf30a2844ba121760fd7301f8ad240100b',
     ),
     'psr/container' => 
     array (

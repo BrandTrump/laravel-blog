@@ -81,9 +81,9 @@
                     <img class="d-block w- h-100" src="https://cdn.pixabay.com/photo/2021/04/24/17/57/road-6204670_960_720.jpg" alt="Second slide">
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                            <h1>Subscribe Today.</h1>
+                            <p>Subscribe for one full year starting from $20.</p>
+                            <p><a class="btn btn-lg btn-primary" href="/billing">Subscribe</a></p>
                         </div>
                     </div>
                 </div>
@@ -123,6 +123,7 @@
             <div class="col-md-8">
                 @if( ! $posts == null)
                     @forelse ($posts as $post)
+                        @if($post->published_at < now())
                             <article class="blog-post">
                                 <h1 class="blog-post-title"><a href="/posts/{{ $post->slug }}" class="link-dark">
                                         {!! $post->title !!}
@@ -140,6 +141,7 @@
                                     {!! $post->excerpt !!}
                                 </div>
                             </article>
+                        @endif
                     @empty
                         <h1 class="blog-post-title">No posts matching search result</h1><br>
                     @endforelse

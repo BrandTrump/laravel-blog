@@ -39,7 +39,7 @@ class PostsController extends Controller
 
     public function showCreate()
     {
-        $posts = Post::with('category')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('category')->orderBy('created_at', 'desc')->get()->unique('category_id');
 
         return view('post-creation', compact('posts'));
     }
